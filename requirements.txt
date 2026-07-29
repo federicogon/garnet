@@ -1,0 +1,17 @@
+# Dependencies of the Garnet Control integration.
+#
+# Direct third-party imports used by the integration source:
+aiohttp        # api.py — async HTTP client
+voluptuous     # config_flow.py — config-flow form schema
+
+# The integration runs inside Home Assistant Core. Install it to import the
+# homeassistant.* modules used across the code (coordinator, config_flow,
+# alarm_control_panel, __init__) and to read their source.
+#
+# NOTE: pin this to the Home Assistant version you target, e.g. homeassistant==2024.12.0
+homeassistant
+
+# --- Local testing without Home Assistant ---------------------------------
+# api.py + const.py depend ONLY on aiohttp (no homeassistant import), so the
+# API client can be exercised standalone — see scripts/try_api.py. For that you
+# only need `aiohttp` from the list above; `homeassistant` is not required.

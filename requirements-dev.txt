@@ -1,0 +1,18 @@
+# Development / testing dependencies for the Garnet Control integration.
+#
+# Install with:
+#     pip install -r requirements-dev.txt
+#
+# This also pulls in the runtime dependencies.
+-r requirements.txt
+
+# Test runner and async support.
+pytest
+pytest-asyncio
+
+# Home Assistant test harness for custom components. It provides fixtures
+# (hass, aioclient_mock, etc.) and pins a compatible Home Assistant Core.
+#
+# NOTE: pin this to the release matching your target Home Assistant version,
+# e.g. pytest-homeassistant-custom-component==0.13.x
+pytest-homeassistant-custom-component

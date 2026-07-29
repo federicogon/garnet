@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Garnet Control",
+        "description": "Ingresá las credenciales de tu cuenta de Garnet Control (web.garnetcontrol.app).",
+        "data": {
+          "email": "Email",
+          "password": "Contraseña"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Credenciales inválidas.",
+      "cannot_connect": "No se pudo conectar con el servicio de Garnet Control.",
+      "unknown": "Error inesperado."
+    },
+    "abort": {
+      "already_configured": "Esta cuenta ya está configurada."
+    }
+  }
+}
