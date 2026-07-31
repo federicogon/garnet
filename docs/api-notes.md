@@ -309,10 +309,12 @@ Correspondencia entre los estados del API de Garnet y los estados de Home Assist
 | `"disarm"`                   | `disarmed`            |
 | `"arm"`                      | `armed_away`          |
 | `"present"`                  | `armed_home`          |
+| `"triggered"`                | `triggered`           |
 | `"0"` (partición no config.) | _(no crear entidad)_  |
 
 > `"arm"` = armada "Ausente" (`arm/away`). `"present"` = armada "Presente" (`arm/delayed`):
 > armada pero con algunas zonas/sensores desactivados → se mapea a `armed_home`.
+> `"triggered"` = **alarma sonando** (sirena activada) → se mapea a `triggered`.
 > `"disarm"` = desarmada; `"0"` = partición no configurada.
 
 ## Preguntas abiertas
@@ -321,7 +323,8 @@ Correspondencia entre los estados del API de Garnet y los estados de Home Assist
   `programation.data.partitions`) y zonas (hasta 32). El alcance inicial son las particiones.
 - ¿Un usuario puede tener más de una alarma/panel? (el array `sistemas` lo permite; en el
   ejemplo hay solo una).
-- ¿Qué valores de `estado` devuelve el API cuando la alarma está **armada**? (total vs presente).
+- ✅ ¿Qué valores de `estado` devuelve el API cuando la alarma está **armada** o
+  **sonando**? `"arm"` (ausente), `"present"` (presente) y `"triggered"` (sonando).
 - ¿El armado/desarmado requiere el PIN de `partitionKeys` en el body, o basta la sesión?
 - ¿Hay rate limiting? ¿Cada cuánto se puede consultar el estado (polling)?
 - ¿Existe algún endpoint/push para estado en tiempo real, o solo polling?

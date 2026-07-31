@@ -32,3 +32,4 @@ PARTITION_STATE_UNCONFIGURED = "0"
 PARTITION_STATE_DISARMED = "disarm"
 PARTITION_STATE_ARMED = "arm"          # "Away" -> armed_away
 PARTITION_STATE_PRESENT = "present"    # "Home" -> armed_home (armed with some zones bypassed)
+PARTITION_STATE_TRIGGERED = "triggered"  # alarm ringing -> triggered

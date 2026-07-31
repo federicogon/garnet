@@ -20,6 +20,7 @@ from .const import (
     PARTITION_STATE_ARMED,
     PARTITION_STATE_DISARMED,
     PARTITION_STATE_PRESENT,
+    PARTITION_STATE_TRIGGERED,
     PARTITION_STATE_UNCONFIGURED,
 )
 from .coordinator import GarnetCoordinator
@@ -28,14 +29,16 @@ _LOGGER = logging.getLogger(__name__)
 
 # Mapping of the API `estado` values to Home Assistant states
 # (see docs/api-notes.md):
-#   - "disarm"  -> disarmed
-#   - "arm"     -> armed away
-#   - "present" -> armed home (armed with some zones bypassed)
-#   - "0"       -> unconfigured partition (no entity is created)
+#   - "disarm"    -> disarmed
+#   - "arm"       -> armed away
+#   - "present"   -> armed home (armed with some zones bypassed)
+#   - "triggered" -> triggered (the alarm is ringing)
+#   - "0"         -> unconfigured partition (no entity is created)
 STATE_MAP: dict[str, AlarmControlPanelState] = {
     PARTITION_STATE_DISARMED: AlarmControlPanelState.DISARMED,
     PARTITION_STATE_ARMED: AlarmControlPanelState.ARMED_AWAY,
     PARTITION_STATE_PRESENT: AlarmControlPanelState.ARMED_HOME,
+    PARTITION_STATE_TRIGGERED: AlarmControlPanelState.TRIGGERED,
 }
 
 

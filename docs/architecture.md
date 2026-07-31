@@ -23,7 +23,7 @@ erDiagram
     PARTITION {
         string number PK "key in estados (1..4)"
         string nombre "partition name"
-        string estado "disarm | arm | present | 0 (unconfigured)"
+        string estado "disarm | arm | present | triggered | 0 (unconfigured)"
     }
     HA_DEVICE {
         tuple identifiers PK "(DOMAIN, system_id)"
@@ -33,7 +33,7 @@ erDiagram
     HA_ALARM_PANEL {
         string unique_id PK "f'{system_id}_{partition}'"
         string name "partition nombre"
-        enum alarm_state "DISARMED | ARMED_AWAY | ARMED_HOME"
+        enum alarm_state "DISARMED | ARMED_AWAY | ARMED_HOME | TRIGGERED"
         int supported_features "ARM_AWAY | ARM_HOME"
     }
 ```
@@ -42,8 +42,9 @@ Notes:
 
 - A partition with `estado == "0"` is **unconfigured** and does **not** become an
   entity (see `PARTITION_STATE_UNCONFIGURED`).
-- The `estado` maps to `DISARMED` (`"disarm"`), `ARMED_AWAY` (`"arm"`) or
-  `ARMED_HOME` (`"present"` — armed with some zones bypassed).
+- The `estado` maps to `DISARMED` (`"disarm"`), `ARMED_AWAY` (`"arm"`),
+  `ARMED_HOME` (`"present"` — armed with some zones bypassed) or `TRIGGERED`
+  (`"triggered"` — the alarm is ringing).
 
 ## Sequence: populating and mapping an entity
 
@@ -88,6 +89,6 @@ sequenceDiagram
     HA->>Panel: read alarm_state
     Panel->>Coord: coordinator.data[system_id]["estados"][partition]["estado"]
     Panel->>Panel: _map_state(estado)
-    Note over Panel: "disarm" -> DISARMED<br/>"arm" -> ARMED_AWAY<br/>"present" -> ARMED_HOME
+    Note over Panel: "disarm" -> DISARMED<br/>"arm" -> ARMED_AWAY<br/>"present" -> ARMED_HOME<br/>"triggered" -> TRIGGERED
     Panel-->>HA: AlarmControlPanelState
 ```
